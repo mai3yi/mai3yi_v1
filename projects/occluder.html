@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Occluder | Maitreyi V. Shrinivas</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { 
+      background:#ffffff; 
+      color:#0a0a0a; 
+      font-family:'Barlow',sans-serif; 
+    }
+    header { 
+      padding:2rem 10vw; 
+      border-bottom:1px solid rgba(0,0,0,0.1);
+    }
+    main { 
+      padding:4rem 10vw; 
+      max-width:900px; 
+      margin:auto;
+    }
+    h1 { 
+      font-family:'IBM Plex Mono',monospace; 
+      color:#0a0a0a; 
+      text-transform:uppercase;
+    }
+    .meta {
+      color:#555;
+      font-family:'IBM Plex Mono',monospace;
+      font-size:0.85rem;
+    }
+    .back {
+      display:inline-block; 
+      margin-top:2rem; 
+      color:#0a0a0a; 
+      font-family:'IBM Plex Mono',monospace; 
+      text-decoration:none;
+    }
+
+    /* Carousel */
+    .carousel {
+      position:relative;
+      width:100%;
+      max-width:900px;
+      margin:2rem auto;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,0.1);
+    }
+    .carousel img {
+      width:100%;
+      display:none;
+    }
+    .carousel img.active {
+      display:block;
+    }
+    .carousel button {
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(255,255,255,0.7);
+      border:none;
+      font-size:1.5rem;
+      cursor:pointer;
+      padding:0.5rem 1rem;
+      color:#000;
+      transition:background 0.2s;
+    }
+    .carousel button:hover {
+      background:rgba(0,0,0,0.1);
+    }
+    .carousel .prev { left:10px; }
+    .carousel .next { right:10px; }
+
+    /* Gallery */
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:1rem;
+      margin-top:3rem;
+    }
+    .gallery img {
+      width:100%;
+      border:1px solid rgba(0,0,0,0.1);
+    }
+
+    footer {
+      text-align:center;
+      padding:2rem 0;
+      border-top:1px solid rgba(0,0,0,0.08);
+      font-size:0.75rem;
+      color:#555;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="back">← back to portfolio</a>
+    <h1>The Occluder</h1>
+    <p class="meta">Wearable interface · 2025</p>
+  </header>
+
+  <main>
+    <!-- Carousel -->
+    <div class="carousel">
+      <img src="/assets/occluder_cover.png" alt="The Occluder Cover" class="active">
+      <img src="/assets/occluder_demo.png" alt="The Occluder Demo">
+      <img src="/assets/occluder_internals.png" alt="The Occluder Internals">
+      <img src="/assets/occluder_draft.png" alt="The Occluder Draft">
+      <button class="prev">‹</button>
+      <button class="next">›</button>
+    </div>
+
+    <!-- Blurb -->
+    <section class="intro">
+      <p>
+        The Occluder is a wearable mixed-media device exploring sensory interference and augmentation. 
+        It combines motion, sound, and visual feedback through servo-driven elements, OLED display, 
+        and embedded sensors to question the boundaries between visibility and perception.
+      </p>
+    </section>
+
+    <!-- Documentation Gallery -->
+    <section class="gallery">
+      <img src="/assets/doc1.png" alt="Documentation Image 1">
+      <img src="/assets/doc2.png" alt="Documentation Image 2">
+      <img src="/assets/doc3.png" alt="Documentation Image 3">
+      <img src="/assets/doc4.png" alt="Documentation Image 4">
+    </section>
+
+    <section class="details">
+      <h2>Overview</h2>
+      <p>
+        The Occluder integrates mechanical and electronic systems within a custom 3D-printed form. 
+        It was designed to analyze how occlusion and sensory distortion affect human awareness in 
+        mediated spaces.
+      </p>
+
+      <h2>Role & Tools</h2>
+      <ul>
+        <li>Concept design, fabrication, coding, and documentation</li>
+        <li>Arduino · Fusion 360 · Blender · Photoshop</li>
+      </ul>
+
+      <h2>Outcome</h2>
+      <p>
+        Developed and exhibited as part of <em>Art + Tech Studio</em> at Pratt Institute, 2025.
+        The project was presented through a physical prototype and visual documentation series.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Maitreyi V. Shrinivas
+  </footer>
+
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    let current = 0;
+    const showImage = (i) => {
+      images.forEach(img => img.classList.remove('active'));
+      images[i].classList.add('active');
+    };
+    document.querySelector('.next').addEventListener('click', () => {
+      current = (current + 1) % images.length;
+      showImage(current);
+    });
+    document.querySelector('.prev').addEventListener('click', () => {
+      current = (current - 1 + images.length) % images.length;
+      showImage(current);
+    });
+  </script>
+</body>
+</html>
