@@ -1,4 +1,4 @@
-/* GLOBAL VARIABLES */
+/* ===== GLOBAL VARIABLES ===== */
 const body = document.body;
 const navLinks = document.querySelectorAll('#nav a');
 const sections = document.querySelectorAll('.section');
@@ -8,7 +8,6 @@ const scrollCue = document.querySelector('.scroll-indicator');
 /* === 1. NAV HIGHLIGHT ON SCROLL === */
 window.addEventListener('scroll', () => {
   let current = '';
-
   sections.forEach(section => {
     const sectionTop = section.offsetTop - 150;
     if (scrollY >= sectionTop) current = section.getAttribute('id');
@@ -16,47 +15,41 @@ window.addEventListener('scroll', () => {
 
   navLinks.forEach(link => {
     link.classList.remove('active');
-    if (link.getAttribute('href').includes(current)) {
-      link.classList.add('active');
-    }
+    if (link.getAttribute('href').includes(current)) link.classList.add('active');
   });
 
-  // Fade out landing scroll indicator
-  if (window.scrollY > window.innerHeight * 0.3) {
-    scrollCue.style.opacity = 0;
-  } else {
-    scrollCue.style.opacity = 1;
+  if (scrollCue) {
+    scrollCue.style.opacity = window.scrollY > window.innerHeight * 0.3 ? 0 : 1;
   }
 });
 
-/* === 2. SCROLL SMOOTHNESS === */
+/* === 2. SMOOTH SCROLL === */
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     document.querySelector(link.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+      behavior: 'smooth'
     });
   });
 });
 
-/* === 3. PARALLAX INTRO BACKGROUND === */
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  intro.style.transform = `translateY(${scrolled * 0.25}px)`;
-  intro.style.opacity = Math.max(1 - scrolled / 500, 0.3);
-});
+/* === 3. PARALLAX LANDING === */
+if (intro) {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    intro.style.transform = `translateY(${scrolled * 0.25}px)`;
+    intro.style.opacity = Math.max(1 - scrolled / 500, 0.3);
+  });
+}
 
-/* === 4. GLITCH TEXT EFFECT FOR TITLES === */
+/* === 4. GLITCH EFFECT FOR TITLES === */
 function glitchText(element, intensity = 2, interval = 60) {
   const text = element.textContent;
   const chars = '!<>-_\\/[]{}—=+*^?#________';
-  let glitchTimer;
-
+  let timer;
   function randomChar() {
     return chars[Math.floor(Math.random() * chars.length)];
   }
-
   function glitchCycle() {
     let output = '';
     for (let i = 0; i < text.length; i++) {
@@ -64,19 +57,15 @@ function glitchText(element, intensity = 2, interval = 60) {
     }
     element.textContent = output;
   }
-
   element.addEventListener('mouseenter', () => {
-    clearInterval(glitchTimer);
-    glitchTimer = setInterval(glitchCycle, interval);
+    clearInterval(timer);
+    timer = setInterval(glitchCycle, interval);
   });
-
   element.addEventListener('mouseleave', () => {
-    clearInterval(glitchTimer);
+    clearInterval(timer);
     element.textContent = text;
   });
 }
-
-// Apply glitch to all section headers
 document.querySelectorAll('.section h2').forEach(h => glitchText(h, 1.5));
 
 /* === 5. PROJECT TILE INTERACTION === */
@@ -93,61 +82,13 @@ document.querySelectorAll('.project').forEach(tile => {
 
 /* === 6. PROCESS ITEM OVERLAY REVEAL === */
 document.querySelectorAll('.process-item').forEach(item => {
-  item.addEventListener('mouseenter', () => {
-    const overlay = item.querySelector('.overlay');
-    overlay.style.background = 'rgba(0,0,0,0.9)';
-    overlay.style.transform = 'translateY(-5px)';
-  });
-  item.addEventListener('mouseleave', () => {
-    const overlay = item.querySelector('.overlay');
-    overlay.style.background = 'rgba(0,0,0,0.7)';
-    overlay.style.transform = 'translateY(0)';
-  });
+  const overlay = item.querySelector('.overlay');
+  if (!overlay) return;
+  item.addEventListener('mouseenter', () => (overlay.style.background = 'rgba(0,0,0,0.9)'));
+  item.addEventListener('mouseleave', () => (overlay.style.background = 'rgba(0,0,0,0.7)'));
 });
 
-/* === 7. KEYBOARD NOISE GLITCH (ambient) === */
-let lastNoise = 0;
-document.addEventListener('keydown', e => {
-  if (Date.now() - lastNoise < 200) return;
-  lastNoise = Date.now();
-
-  const flash = document.createElement('div');
-  flash.className = 'screen-flash';
-  flash.style.position = 'fixed';
-  flash.style.top = 0;
-  flash.style.left = 0;
-  flash.style.width = '100%';
-  flash.style.height = '100%';
-  flash.style.background = `rgba(59,95,255,${Math.random() * 0.05})`;
-  flash.style.pointerEvents = 'none';
-  flash.style.mixBlendMode = 'screen';
-  flash.style.transition = 'opacity 0.3s ease';
-  body.appendChild(flash);
-
-  setTimeout(() => (flash.style.opacity = 0), 50);
-  setTimeout(() => flash.remove(), 300);
-});
-
-/* === 8. RANDOM DATA STREAM TICKER (OPTIONAL) === */
-// adds “ambient signal” text at footer
-const footer = document.querySelector('footer');
-const phrases = [
-  '[signal restored]',
-  '[scanning memory sectors...]',
-  '[connection: stable]',
-  '[rebuilding index...]',
-  '[data integrity: 97.4%]'
-];
-setInterval(() => {
-  const p = document.createElement('p');
-  p.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-  p.style.fontFamily = 'IBM Plex Mono, monospace';
-  p.style.color = 'rgba(255,255,255,0.2)';
-  p.style.fontSize = '0.7rem';
-  footer.appendChild(p);
-  setTimeout(() => p.remove(), 4000);
-}, 6000);
-/* === UNIVERSAL IMAGE ZOOM MODAL === */
+/* === 7. UNIVERSAL IMAGE ZOOM MODAL === */
 const modal = document.createElement('div');
 modal.id = 'img-modal';
 const modalImg = document.createElement('img');
@@ -163,9 +104,11 @@ function setupZoom(images) {
   });
 }
 
-// Apply to both galleries and project cards
-setupZoom(document.querySelectorAll('.gallery-card img'));
+// Applies to documentation, galleries, and Occluder carousel
+setupZoom(document.querySelectorAll('.gallery img'));
+setupZoom(document.querySelectorAll('.carousel.fullscreen img'));
 setupZoom(document.querySelectorAll('.project img'));
+setupZoom(document.querySelectorAll('.gallery-card img'));
 
 modal.addEventListener('click', e => {
   if (e.target === modalImg) {
@@ -175,38 +118,62 @@ modal.addEventListener('click', e => {
     modalImg.classList.remove('zoomed');
   }
 });
-/* === AUTOPLAY GLITCH ON LOAD === */
-function autoGlitch(element, intensity = 2, duration = 2000, interval = 120) {
-  const text = element.textContent;
-  const chars = '!<>-_\\/[]{}—=+*^?#________';
-  let timer;
 
-  function randomChar() {
-    return chars[Math.floor(Math.random() * chars.length)];
-  }
+/* === 8. OCCLUDER CAROUSEL === */
+(() => {
+  const carousel = document.querySelector('.carousel.fullscreen');
+  if (!carousel) return;
 
-  function cycle() {
-    let output = '';
-    for (let i = 0; i < text.length; i++) {
-      output += Math.random() < 0.08 * intensity ? randomChar() : text[i];
-    }
-    element.textContent = output;
-  }
+  const images = carousel.querySelectorAll('img');
+  const next = carousel.querySelector('.next');
+  const prev = carousel.querySelector('.prev');
+  let current = 0;
 
-  // Start glitch immediately on load
-  let count = 0;
-  timer = setInterval(() => {
-    cycle();
-    count += interval;
-    if (count >= duration) {
-      clearInterval(timer);
-      element.textContent = text; // reset to clean text
-    }
-  }, interval);
+  const showImage = i => {
+    images.forEach(img => img.classList.remove('active'));
+    images[i].classList.add('active');
+  };
+
+  next.addEventListener('click', () => {
+    current = (current + 1) % images.length;
+    showImage(current);
+  });
+
+  prev.addEventListener('click', () => {
+    current = (current - 1 + images.length) % images.length;
+    showImage(current);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') next.click();
+    if (e.key === 'ArrowLeft') prev.click();
+    if (e.key === 'Escape') modal.classList.remove('active');
+  });
+})();
+
+/* === 9. RANDOM FOOTER SIGNALS === */
+const footer = document.querySelector('footer');
+if (footer) {
+  const phrases = [
+    '[signal restored]',
+    '[scanning memory sectors...]',
+    '[connection: stable]',
+    '[rebuilding index...]',
+    '[data integrity: 97.4%]'
+  ];
+  setInterval(() => {
+    const p = document.createElement('p');
+    p.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+    p.style.fontFamily = 'IBM Plex Mono, monospace';
+    p.style.color = 'rgba(255,255,255,0.2)';
+    p.style.fontSize = '0.7rem';
+    footer.appendChild(p);
+    setTimeout(() => p.remove(), 4000);
+  }, 6000);
 }
-
-// Trigger when DOM is ready
-window.addEventListener('load', () => {
-  const nameEl = document.querySelector('#glitch-name');
-  if (nameEl) autoGlitch(nameEl, 2, 1500, 40);
+/* === OCCLUDER LIGHT FADE === */
+window.addEventListener('DOMContentLoaded', () => {
+  if (document.title.includes('Occluder')) {
+    document.body.classList.add('occluder-light');
+  }
 });

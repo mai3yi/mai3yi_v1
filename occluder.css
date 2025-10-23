@@ -1,0 +1,484 @@
+/* ===== GLOBAL RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background-color: #0a0a0a;
+  color: #e8e8e8;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ===== COLOR SYSTEM ===== */
+:root {
+  --accent-blue: #3b5fff;
+  --accent-red: #ff3b3b;
+  --accent-gray: #1a1a1a;
+  --text-dim: #8a8a8a;
+}
+
+/* ===== NAVIGATION ===== */
+#nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(5, 5, 5, 0.9);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 1rem 0;
+  z-index: 1000;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+#nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+#nav a:hover {
+  color: var(--accent-blue);
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.page-header .back {
+  position: absolute;
+  left: 8vw;
+  top: 3rem;
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+}
+
+/* ===== CAROUSEL (The Occluder) ===== */
+.carousel.fullscreen {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 3rem auto 4rem;
+  background: #f6f6f6;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+}
+
+.carousel.fullscreen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.carousel.fullscreen img.active {
+  display: block;
+  opacity: 1;
+}
+
+.carousel.fullscreen button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0.8rem 1.4rem;
+  border-radius: 50%;
+  color: #000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.carousel.fullscreen button:hover {
+  background: rgba(0,0,0,0.15);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel.fullscreen .prev { left: 2%; }
+.carousel.fullscreen .next { right: 2%; }
+
+@media (max-width: 900px) {
+  .carousel.fullscreen { height: 70vh; }
+}
+
+@media (max-width: 600px) {
+  .carousel.fullscreen { height: 60vh; }
+  .carousel.fullscreen button { font-size: 2rem; padding: 0.5rem 1rem; }
+}
+
+/* ===== INTRO TEXT ===== */
+.intro {
+  max-width: 850px;
+  margin: 1.5rem auto 3rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #111;
+  text-align: center;
+}
+
+/* ===== DOCUMENTATION GALLERY ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin: 3rem auto;
+  max-width: 1100px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* ===== IMAGE MODAL (Universal Zoom) ===== */
+#img-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+#img-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#img-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  cursor: zoom-out;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+#img-modal img.zoomed {
+  transform: scale(1.5);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+/* ===== LIGHT THEME FADE-IN (Occluder only) ===== */
+body.occluder-light {
+  background: #fafafa;
+  color: #0a0a0a;
+  animation: fadeToLight 2s ease forwards;
+}
+
+@keyframes fadeToLight {
+  0% {
+    background: #0a0a0a;
+    color: #e8e8e8;
+  }
+  100% {
+    background: #fafafa;
+    color: #0a0a0a;
+  }
+}
+
+/* Maintain readability during fade */
+body.occluder-light header,
+body.occluder-light footer {
+  transition: background 1.5s ease, color 1.5s ease;
+  color: #0a0a0a;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.occluder-light .carousel.fullscreen {
+  background: #f7f7f7;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+}
+
+body.occluder-light .gallery img {
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+/* ===== GALLERY GRID WITH CAPTION ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.gallery-item img {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.02);
+}
+
+.gallery-caption {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+  font-family: 'Barlow', sans-serif;
+  padding-top: 0.25rem;
+}
+
+/* ===== MODAL (Fullscreen View) ===== */
+#img-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+#img-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#img-modal img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+#img-modal img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+  .gallery-item {
+    flex-direction: column;
+  }
+  .gallery-item img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+/* ===== GLITCH TITLE EFFECT ===== */
+.glitch {
+  position: relative;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 0.05em;
+  color: #0a0a0a;
+  animation: glitchColor 2s infinite;
+  overflow: hidden;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #3b5fff;
+  animation: glitchTop 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 #ff3b3b;
+  animation: glitchBottom 1.8s infinite linear alternate-reverse;
+}
+
+@keyframes glitchTop {
+  0%, 19%, 21%, 23%, 100% { clip-path: inset(0 0 0 0); }
+  20%, 22% { clip-path: inset(30% 0 40% 0); }
+}
+
+@keyframes glitchBottom {
+  0%, 19%, 21%, 23%, 100% { clip-path: inset(0 0 0 0); }
+  20%, 22% { clip-path: inset(60% 0 10% 0); }
+}
+
+@keyframes glitchColor {
+  0%, 100% { color: #0a0a0a; }
+  50% { color: #333; }
+}
+/* Carousel layout hardening */
+.carousel {
+  position: relative;
+  width: 100%;
+  margin: 3rem auto 4rem;
+}
+
+.carousel .slides {
+  position: relative;
+  width: 100%;
+  height: 90vh;             /* theatre mode */
+  max-height: 900px;
+  overflow: hidden;
+  background: #f6f6f6;
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+}
+
+.carousel .slides > img,
+.carousel .slides > video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+  background: #f6f6f6;
+}
+
+.carousel .slides > .active {
+  display: block;
+}
+
+/* Ensure buttons are always clickable and above videos */
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;          /* higher than everything */
+  pointer-events: auto;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0.8rem 1.4rem;
+  border-radius: 50%;
+  color: #000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.carousel .prev { left: 2%; }
+.carousel .next { right: 2%; }
+
+.carousel button:hover { transform: translateY(-50%) scale(1.08); }
+
+/* Videos should never eat clicks meant for buttons */
+.carousel .slides > video {
+  pointer-events: none;   /* buttons remain clickable */
+}
+
+@media (max-width: 900px) { .carousel .slides { height: 70vh; } }
+@media (max-width: 600px) { .carousel .slides { height: 60vh; } }
+
+.carousel .slides {
+  position: relative;
+  width: 100%;
+  height: 80vh;             /* capped for ultra-wide monitors */
+  max-height: 800px;        /* smoother vertical constraint */
+  overflow: hidden;
+  background: #f6f6f6;
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+}
+
+/* Keep buttons visible and mobile-safe */
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  pointer-events: auto;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0.8rem 1.4rem;
+  border-radius: 50%;
+  color: #000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.carousel .prev { left: 1rem; }
+.carousel .next { right: 1rem; }
+
+@media (max-width: 900px) {
+  .carousel .slides { height: 65vh; }
+  .carousel button { font-size: 2.5rem; }
+}
+@media (max-width: 600px) {
+  .carousel .slides { height: 55vh; }
+  .carousel button { font-size: 2rem; }
+}
+@media (max-height: 600px) {
+  .carousel button {
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+  }
+}

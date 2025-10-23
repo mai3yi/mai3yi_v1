@@ -1,118 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Occluder | Maitreyi V. Shrinivas</title>
-  <link rel="stylesheet" href="../style.css">
-  <style>
-    body { 
-      background:#ffffff; 
-      color:#0a0a0a; 
-      font-family:'Barlow',sans-serif; 
-    }
-    header { 
-      padding:2rem 10vw; 
-      border-bottom:1px solid rgba(0,0,0,0.1);
-    }
-    main { 
-      padding:4rem 10vw; 
-      max-width:900px; 
-      margin:auto;
-    }
-    h1 { 
-      font-family:'IBM Plex Mono',monospace; 
-      color:#0a0a0a; 
-      text-transform:uppercase;
-    }
-    .meta {
-      color:#555;
-      font-family:'IBM Plex Mono',monospace;
-      font-size:0.85rem;
-    }
-    .back {
-      display:inline-block; 
-      margin-top:2rem; 
-      color:#0a0a0a; 
-      font-family:'IBM Plex Mono',monospace; 
-      text-decoration:none;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;500&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-    /* Carousel */
-    .carousel {
-      position:relative;
-      width:100%;
-      max-width:900px;
-      margin:2rem auto;
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,0.1);
-    }
-    .carousel img {
-      width:100%;
-      display:none;
-    }
-    .carousel img.active {
-      display:block;
-    }
-    .carousel button {
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      background:rgba(255,255,255,0.7);
-      border:none;
-      font-size:1.5rem;
-      cursor:pointer;
-      padding:0.5rem 1rem;
-      color:#000;
-      transition:background 0.2s;
-    }
-    .carousel button:hover {
-      background:rgba(0,0,0,0.1);
-    }
-    .carousel .prev { left:10px; }
-    .carousel .next { right:10px; }
-
-    /* Gallery */
-    .gallery {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:1rem;
-      margin-top:3rem;
-    }
-    .gallery img {
-      width:100%;
-      border:1px solid rgba(0,0,0,0.1);
-    }
-
-    footer {
-      text-align:center;
-      padding:2rem 0;
-      border-top:1px solid rgba(0,0,0,0.08);
-      font-size:0.75rem;
-      color:#555;
-    }
-  </style>
+  <link rel="stylesheet" href="../occluder.css" />
 </head>
 
-<body>
-  <header>
+<body class="light-theme">
+  <header class="page-header">
     <a href="../index.html" class="back">← back to portfolio</a>
-    <h1>The Occluder</h1>
-    <p class="meta">Wearable interface · 2025</p>
+<header class="page-header">
+  <a href="../index.html" class="back">← back to portfolio</a>
+  <h1 id="glitch-name">The Occluder</h1>
+  <p class="meta">Wearable interface · 2025</p>
+</header>
+
   </header>
 
   <main>
-    <!-- Carousel -->
-    <div class="carousel">
-      <img src="/assets/occluder_cover.png" alt="The Occluder Cover" class="active">
-      <img src="/assets/occluder_demo.png" alt="The Occluder Demo">
-      <img src="/assets/occluder_internals.png" alt="The Occluder Internals">
-      <img src="/assets/occluder_draft.png" alt="The Occluder Draft">
-      <button class="prev">‹</button>
-      <button class="next">›</button>
-    </div>
+  <!-- Carousel -->
+<div class="carousel fullscreen" aria-label="Occluder media carousel">
+  <div class="slides">
+    <img src="../assets/occluder_cover.png" 
+         alt="Two white 3D-printed wearable headset units on display" class="active">
 
-    <!-- Blurb -->
+    <img src="../assets/occluder_demo.png" 
+         alt="Designer wearing Occluder headset device with servo-driven wings">
+
+    <video muted playsinline preload="metadata" data-autoplay="true"
+           aria-label="Short demonstration video showing servo and OLED response">
+      <source src="../assets/veil_partialdemo.mp4" type="video/mp4">
+    </video>
+
+    <img src="../assets/occluder_internals.png" 
+         alt="Disassembled internal view showing wiring, accelerometer, and servos">
+
+    <video muted playsinline preload="metadata" data-autoplay="true"
+           aria-label="Full demo video showing completed device movement and display">
+      <source src="../assets/veil_fulldemo.mp4" type="video/mp4">
+    </video>
+
+  </div>
+
+  <button class="prev" type="button" aria-label="Previous slide">‹</button>
+  <button class="next" type="button" aria-label="Next slide">›</button>
+</div>
+
+
+    <!-- Description -->
     <section class="intro">
       <p>
         The Occluder is a wearable mixed-media device exploring sensory interference and augmentation. 
@@ -122,13 +60,38 @@
     </section>
 
     <!-- Documentation Gallery -->
-    <section class="gallery">
-      <img src="/assets/doc1.png" alt="Documentation Image 1">
-      <img src="/assets/doc2.png" alt="Documentation Image 2">
-      <img src="/assets/doc3.png" alt="Documentation Image 3">
-      <img src="/assets/doc4.png" alt="Documentation Image 4">
-    </section>
+  <section class="gallery">
+  <div class="gallery-item">
+    <img src="../assets/doc1.png" alt="Documentation 1"  loading="lazy">
+    <div class="gallery-caption">
+      <p>Early Fusion drafts showing initial layout.</p>
+    </div>
+  </div>
 
+  <div class="gallery-item">
+    <img src="../assets/doc2.png" alt="Documentation 2"  loading="lazy">
+    <div class="gallery-caption">
+      <p>Final version which got printed & assembled. </p>
+    </div>
+  </div>
+
+    <div class="gallery-item">
+    <img src="../assets/doc3.png" alt="Documentation 2"  loading="lazy">
+    <div class="gallery-caption">
+      <p>3/4 shot of the earlier design. </p>
+    </div>
+  </div>
+
+    <div class="gallery-item">
+    <img src="../assets/doc4.png" alt="Documentation 2" loading="lazy">
+    <div class="gallery-caption">
+      <p>Initial sketch! I had actually started out trying to make a pair of headphones. It changed a lot!</p>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Details -->
     <section class="details">
       <h2>Overview</h2>
       <p>
@@ -145,7 +108,7 @@
 
       <h2>Outcome</h2>
       <p>
-        Developed and exhibited as part of <em>Art + Tech Studio</em> at Pratt Institute, 2025.
+        Developed and exhibited as part of <em>Art + Tech Studio</em> at Pratt Institute, 2025. 
         The project was presented through a physical prototype and visual documentation series.
       </p>
     </section>
@@ -155,21 +118,131 @@
     © 2025 Maitreyi V. Shrinivas
   </footer>
 
-  <script>
-    const images = document.querySelectorAll('.carousel img');
-    let current = 0;
-    const showImage = (i) => {
-      images.forEach(img => img.classList.remove('active'));
-      images[i].classList.add('active');
-    };
-    document.querySelector('.next').addEventListener('click', () => {
-      current = (current + 1) % images.length;
-      showImage(current);
+<script>
+  // === Light fade for Occluder ===
+  window.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('occluder-light');
+  });
+
+  // === Glitch Title ===
+  function autoGlitch(element, intensity = 2, duration = 1500, interval = 40) {
+    if (!element) return;
+    const original = element.textContent;
+    const chars = '!<>-_\\/[]{}=+*^?#_____';
+    let elapsed = 0;
+    const t = setInterval(() => {
+      let out = '';
+      for (let i = 0; i < original.length; i++) {
+        out += Math.random() < 0.08 * intensity
+          ? chars[Math.floor(Math.random() * chars.length)]
+          : original[i];
+      }
+      element.textContent = out;
+      elapsed += interval;
+      if (elapsed >= duration) {
+        clearInterval(t);
+        element.textContent = original;
+      }
+    }, interval);
+  }
+  window.addEventListener('load', () =>
+    autoGlitch(document.querySelector('#glitch-name'), 2, 1500, 40)
+  );
+
+  // === Robust Carousel (supports images + videos) ===
+  (function initCarousel() {
+    const carousel = document.querySelector('.carousel');
+    if (!carousel) return;
+
+    const slidesWrap = carousel.querySelector('.slides') || carousel;
+    const slides = Array.from(slidesWrap.querySelectorAll('img, video'));
+    const prev = carousel.querySelector('.prev');
+    const next = carousel.querySelector('.next');
+    let idx = slides.findIndex(el => el.classList.contains('active'));
+    if (idx < 0) idx = 0;
+
+    function show(i) {
+      slides.forEach((el, k) => {
+        const active = k === i;
+        el.classList.toggle('active', active);
+        if (el.tagName === 'VIDEO') {
+          el.pause();
+          if (active) {
+            el.currentTime = 0;
+            el.play().catch(() => {});
+          }
+        }
+      });
+    }
+
+    function nextSlide() {
+      idx = (idx + 1) % slides.length;
+      show(idx);
+    }
+
+    function prevSlide() {
+      idx = (idx - 1 + slides.length) % slides.length;
+      show(idx);
+    }
+
+    next.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      nextSlide();
     });
-    document.querySelector('.prev').addEventListener('click', () => {
-      current = (current - 1 + images.length) % images.length;
-      showImage(current);
+    prev.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      prevSlide();
     });
-  </script>
+
+    slides.forEach(el => {
+      if (el.tagName === 'VIDEO') {
+        el.style.pointerEvents = 'none';
+        el.muted = true;
+        el.playsInline = true;
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    show(idx);
+  })();
+
+  // === Documentation Gallery Interactivity ===
+  (function initGallery() {
+    const galleryImgs = document.querySelectorAll('.gallery img');
+    if (!galleryImgs.length) return;
+
+    const modal = document.createElement('div');
+    modal.id = 'img-modal';
+    modal.innerHTML = '<img>';
+    document.body.appendChild(modal);
+    const modalImg = modal.querySelector('img');
+
+    galleryImgs.forEach(img => {
+      img.addEventListener('click', () => {
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || '';
+      });
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal || e.target === modalImg) {
+        modal.classList.remove('active');
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') modal.classList.remove('active');
+    });
+  })();
+</script>
+
+
 </body>
 </html>
