@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hardware Testing Log | Process | Maitreyi V. Shrinivas</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    main { padding: 4rem 8vw; max-width: 1400px; margin: auto; }
+    .content-flex { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; }
+    .content-flex video, .content-flex img {
+      flex: 1 1 50%; max-width: 650px; border: 1px solid rgba(255,255,255,0.08);
+    }
+    .text { flex: 1 1 40%; font-family:'IBM Plex Mono',monospace; color:#ccc; font-size:0.9rem; line-height:1.6; }
+    .carousel { display:flex; overflow-x:auto; gap:1rem; padding:1rem 0; scroll-snap-type:x mandatory; }
+    .carousel img { flex:0 0 auto; width:350px; border:1px solid rgba(255,255,255,0.1); scroll-snap-align:start; transition:transform 0.3s ease; }
+    .carousel img:hover { transform:scale(1.05); }
+  </style>
+</head>
+
+<body>
+  <header class="page-header">
+    <a href="../index.html" class="back">← back to portfolio</a>
+    <h1 id="glitch-name">HARDWARE TESTING LOG</h1>
+  </header>
+
+  <main>
+    <section>
+      <div class="content-flex">
+        <video autoplay muted loop playsinline poster="../assets/wip_pcb.jpg">
+          <source src="../assets/wiring_timelapse.mp4" type="video/mp4" />
+        </video>
+        <div class="text">
+          <h2>OLED and Servo Calibration</h2>
+          <p>Documentation of iterative calibration sessions for servo-driven wearable prototypes. Includes signal readings from the MPU6050 accelerometer, OLED wave rendering, and servo synchronization tests.</p>
+          <p>Primary goal: achieve responsive yet stable movement under variable audio input, maintaining consistent power draw across dual servos.</p>
+        </div>
+      </div>
+
+      <div class="carousel">
+        <img src="../assets/hardware1.jpg" alt="Servo setup">
+        <img src="../assets/hardware2.jpg" alt="Accelerometer debug">
+        <img src="../assets/hardware3.jpg" alt="OLED test">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Maitreyi V. Shrinivas
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

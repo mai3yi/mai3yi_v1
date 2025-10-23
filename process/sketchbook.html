@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Prototyping | Process | Maitreyi V. Shrinivas</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    main { padding: 4rem 8vw; max-width: 1400px; margin: auto; }
+    .content-flex { display:flex; flex-wrap:wrap; gap:2rem; align-items:center; }
+    .content-flex video, .content-flex img { flex:1 1 50%; max-width:650px; border:1px solid rgba(255,255,255,0.08); }
+    .text { flex:1 1 40%; font-family:'IBM Plex Mono',monospace; color:#ccc; font-size:0.9rem; line-height:1.6; }
+    .carousel { display:flex; overflow-x:auto; gap:1rem; padding:1rem 0; scroll-snap-type:x mandatory; }
+    .carousel img { flex:0 0 auto; width:350px; border:1px solid rgba(255,255,255,0.1); scroll-snap-align:start; transition:transform 0.3s ease; }
+    .carousel img:hover { transform:scale(1.05); }
+  </style>
+</head>
+
+<body>
+  <header class="page-header">
+    <a href="../index.html" class="back">← back to portfolio</a>
+    <h1 id="glitch-name">VISUAL PROTOTYPING</h1>
+  </header>
+
+  <main>
+    <section>
+      <div class="content-flex">
+        <video autoplay muted loop playsinline poster="../assets/sketchbook.jpg">
+          <source src="../assets/visual_clip.mp4" type="video/mp4" />
+        </video>
+        <div class="text">
+          <h2>Sketchbook + Form Studies</h2>
+          <p>Exploratory sketches and compositional mockups for body-based interaction devices. Focused on proportion, modularity, and gesture-driven functionality.</p>
+          <p>Each prototype iteration explores tension between analog tactility and digital responsiveness in physical computing contexts.</p>
+        </div>
+      </div>
+
+      <div class="carousel">
+        <img src="../assets/visual1.jpg" alt="Sketchbook spread 1">
+        <img src="../assets/visual2.jpg" alt="Sketchbook spread 2">
+        <img src="../assets/visual3.jpg" alt="3D visualization">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Maitreyi V. Shrinivas
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

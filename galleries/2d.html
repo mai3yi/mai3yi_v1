@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2D Illustration | Maitreyi V. Shrinivas</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Page-specific layout only */
+    main {
+      padding: 4rem 8vw;
+      max-width: 1800px;
+      margin: auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 2.5rem;
+      justify-items: center;
+    }
+
+    .work img {
+      width: 100%;
+      display: block;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: transform 2s ease-in-out, filter 0.3s ease;
+    }
+
+    .work img:hover {
+      animation: subtleFloat 4s ease-in-out infinite alternate;
+      filter: brightness(1.1);
+    }
+
+    @keyframes subtleFloat {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-4px) scale(1.05); }
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      cursor: grab;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      transition: transform 0.1s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="page-header">
+    <a href="../index.html" class="back">← back to portfolio</a>
+    <h1 id="glitch-name">2D ILLUSTRATION</h1>
+  </header>
+
+  <main>
+    <div class="gallery-grid">
+      <div class="work">
+        <img src="../assets/2d_1.png" alt="fibre optic" class="zoomable">
+        <div class="caption">"fibre optic" — digital painting, 2025.</div>
+      </div>
+      <div class="work">
+        <img src="../assets/2d_2.png" alt="Petra & Ichor" class="zoomable">
+        <div class="caption">"Petra & Ichor" — digital painting, 2024.</div>
+      </div>
+      <div class="work">
+        <img src="../assets/2d_3.png" alt="the right angle" class="zoomable">
+        <div class="caption">"a painter" — digital painting, 2024.</div>
+      </div>
+      <div class="work">
+        <img src="../assets/2d_4.png" alt="90 miles per minute" class="zoomable">
+        <div class="caption">"90 miles per minute" — digital painting, 2023.</div>
+      </div>
+      <div class="work">
+        <img src="../assets/2d_5.png" alt="Underground Arches" class="zoomable">
+        <div class="caption">"Underground Arches" — 54 × 24 in, charcoal on paper, 2024.</div>
+      </div>
+      <div class="work">
+        <img src="../assets/2d_6.png" alt="lucky cat et. al" class="zoomable">
+        <div class="caption">"lucky cat et. al" — 18 × 24 in, charcoal on paper, 2024.</div>
+      </div>
+    </div>
+  </main>
+
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="">
+  </div>
+
+  <footer>
+    © 2025 Maitreyi V. Shrinivas
+  </footer>
+
+  <script>
+    const zoomables = document.querySelectorAll('.zoomable');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    zoomables.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  </script>
+  <script src="../script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept Map | Process | Maitreyi V. Shrinivas</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    main {
+      padding: 4rem 8vw;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .section-block {
+      margin-bottom: 6rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 4rem;
+    }
+
+    .content-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .content-flex video,
+    .content-flex img {
+      flex: 1 1 50%;
+      max-width: 650px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .text {
+      flex: 1 1 40%;
+      font-family: 'IBM Plex Mono', monospace;
+      color: #ccc;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    .carousel img {
+      flex: 0 0 auto;
+      width: 350px;
+      border: 1px solid rgba(255,255,255,0.1);
+      scroll-snap-align: start;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="page-header">
+    <a href="../index.html" class="back">← back to portfolio</a>
+    <h1 id="glitch-name">CONCEPT MAP</h1>
+  </header>
+
+  <main>
+    <section class="section-block">
+      <div class="content-flex">
+        <video autoplay muted loop playsinline poster="../assets/board1.jpg">
+          <source src="../assets/immersion_clip.mp4" type="video/mp4">
+        </video>
+
+        <div class="text">
+          <h2>Immersion Studies</h2>
+          <p>Gestalt theory meets sensory design — fragments from studio research exploring how humans perceive, fragment, and reassemble spatial information in immersive contexts.</p>
+          <p>This documentation includes iterative mapping of stimulus layering, memory recall tests, and perceptual distortion patterns recorded during interactive experiments.</p>
+        </div>
+      </div>
+
+      <div class="carousel">
+        <img src="../assets/immersion1.jpg" alt="Concept sketch 1">
+        <img src="../assets/immersion2.jpg" alt="Concept sketch 2">
+        <img src="../assets/immersion3.jpg" alt="Research notes">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Maitreyi V. Shrinivas
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
