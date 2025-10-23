@@ -482,3 +482,73 @@ body.occluder-light .gallery img {
     transform: none;
   }
 }
+/* ===== PROJECT DETAILS (TEXT-ONLY LAYOUT) ===== */
+.details {
+  max-width: 900px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+  line-height: 1.8;
+  font-family: 'Barlow', sans-serif;
+}
+
+.details h2 {
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  letter-spacing: 0.05em;
+  margin-top: 3rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.details h2::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--accent-blue);
+  opacity: 0.6;
+  margin-top: 0.4rem;
+}
+
+.details p {
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: var(--text-dim);
+  margin-bottom: 1.4rem;
+}
+
+.details ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0 2rem;
+}
+
+.details li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.6rem;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: var(--text-dim);
+}
+
+.details li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-blue);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Responsive spacing tweaks */
+@media (max-width: 768px) {
+  .details {
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+  }
+  .details h2 {
+    margin-top: 2rem;
+  }
+}
