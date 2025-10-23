@@ -177,3 +177,29 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('occluder-light');
   }
 });
+
+
+// === Glitch Title ===
+  function autoGlitch(element, intensity = 2, duration = 1500, interval = 40) {
+    if (!element) return;
+    const original = element.textContent;
+    const chars = '!<>-_\\/[]{}=+*^?#_____';
+    let elapsed = 0;
+    const t = setInterval(() => {
+      let out = '';
+      for (let i = 0; i < original.length; i++) {
+        out += Math.random() < 0.08 * intensity
+          ? chars[Math.floor(Math.random() * chars.length)]
+          : original[i];
+      }
+      element.textContent = out;
+      elapsed += interval;
+      if (elapsed >= duration) {
+        clearInterval(t);
+        element.textContent = original;
+      }
+    }, interval);
+  }
+  window.addEventListener('load', () =>
+    autoGlitch(document.querySelector('#glitch-name'), 2, 1500, 40)
+  );
