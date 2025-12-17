@@ -53,9 +53,9 @@
     <!-- Description -->
     <section class="intro">
       <p>
-        The Occluder is a wearable mixed-media device exploring sensory interference and augmentation. 
+        The Occluder is a wearable electronic device exploring sensory interference and augmentation. 
         It combines motion, sound, and visual feedback through servo-driven elements, OLED display, 
-        and embedded sensors to question the boundaries between visibility and perception.
+        and embedded sensors.
       </p>
     </section>
       
@@ -92,27 +92,29 @@
   </div>
 </section>
 
-  <!-- Details -->
-    <section class="details">
-      <h2>Overview</h2>
-      <p>
-        The Occluder integrates mechanical and electronic systems within a custom 3D-printed form. 
-        It was designed to analyze how occlusion and sensory distortion affect human awareness in 
-        mediated spaces.
-      </p>
+ <!-- Details -->
+<section class="details">
+  <h2>Overview</h2>
+  <p>
+    The Occluder is a wearable mixed-media device that combines motion, electronics, and 3D printing. By
+    limiting visibility while introducing responsive motion and display elements,
+    the piece examines how users adapt to and are reflected by its sensory interference.
+  </p>
 
-      <h2>Role & Tools</h2>
-      <ul>
-        <li>Concept design, fabrication, coding, and documentation</li>
-        <li>Arduino · Fusion 360 · Blender · Photoshop</li>
-      </ul>
+  <h2>Role & Tools</h2>
+  <ul>
+    <li>End-to-end concept development, fabrication, electronics integration, and documentation</li>
+    <li>Arduino · Fusion 360 · Blender · Photoshop</li>
+  </ul>
 
-      <h2>Outcome</h2>
-      <p>
-        Developed and exhibited as part of <em>Art + Tech Studio</em> at Pratt Institute, 2025. 
-        The project was presented through a physical prototype and visual documentation series.
-      </p>
-    </section>
+  <h2>Outcome</h2>
+  <p>
+    Produced and exhibited as part of <em>Art + Tech Studio</em> at Pratt Institute, 2025.
+    The project was realized as a functional wearable prototype and presented through
+    in-person demonstration and visual documentation.
+  </p>
+</section>
+
   </main>
 
   <footer>
@@ -122,12 +124,11 @@
   </footer>
 
 <script>
-  // === Light fade for Occluder ===
+ 
   window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('occluder-light');
   });
 
-  // === Glitch Title ===
   function autoGlitch(element, intensity = 2, duration = 1500, interval = 40) {
     if (!element) return;
     const original = element.textContent;
@@ -152,7 +153,6 @@
     autoGlitch(document.querySelector('#glitch-name'), 2, 1500, 40)
   );
 
-  // === Robust Carousel (supports images + videos) ===
   (function initCarousel() {
     const carousel = document.querySelector('.carousel');
     if (!carousel) return;
@@ -215,7 +215,6 @@
     show(idx);
   })();
 
-  // === Documentation Gallery Interactivity ===
   (function initGallery() {
     const galleryImgs = document.querySelectorAll('.gallery img');
     if (!galleryImgs.length) return;
