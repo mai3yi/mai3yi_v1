@@ -25,11 +25,13 @@ window.addEventListener('scroll', () => {
 
 /* === 2. SMOOTH SCROLL === */
 navLinks.forEach(link => {
+  const href = link.getAttribute('href');
+
+  if (!href.startsWith('#')) return;
+
   link.addEventListener('click', e => {
     e.preventDefault();
-    document.querySelector(link.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
