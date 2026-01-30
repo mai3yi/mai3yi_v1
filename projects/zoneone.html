@@ -162,48 +162,58 @@
 
   </div>
 
-  <!-- DETAILS -->
-<section class="details">
+  <!-- DETAILS --><section class="details">
+
   <h2>Overview</h2>
   <p>
-    Zone One is a single-scene VR environment where users can interact with objects
-    by picking them up, throwing them, and spray painting surfaces in the space.
-    Interaction happens through user actions applied directly to objects and surfaces.
-     <br>
-    Most props in the scene are interactive except for the architecture and a
-    central table. Users can spray paint directly onto objects and surfaces,
-    creating temporary markings that fade out after a short period of time.
+    Zone One is a single-scene VR environment focused on direct, physical interaction
+    rather than navigation or narrative progression. Users remain within a fixed space
+    and interact with objects by grabbing, throwing, and spray painting surfaces.
+    The project intentionally limits scope to study how repeated, low-stakes actions
+    affect user engagement over time.
   </p>
 
-  <h2>Interaction Logic</h2>
+  <h2>Interaction Design</h2>
   <p>
-    Spray paint is applied using a particle-based system that spawns decals at
-    collision points when the spray hits a surface. Each paint decal has a limited
-    lifetime and fades out gradually before being destroyed.
+    All interactive props use standard VR grab and throw mechanics to maintain
+    immediate learnability. No tutorials or UI prompts are provided;
+    affordances are communicated through object behavior and scale. 
   </p>
-  <br>
   <p>
-    Object interaction uses standard VR grab and throw mechanics. Users can pick
-    up props, move them around the space, and throw them.
+    Spray paint interaction introduces a temporary form of mark-making. Paint decals
+    fade and self-destruct after a fixed lifetime, preventing accumulation and
+    discouraging the user from worrying about completion or perfection.
   </p>
 
-  <h2>Tools & Build</h2>
+  <h2>Technical Implementation</h2>
   <ul>
-    <li>Built in Unity as a single-scene VR environment</li>
-    <li>VR interaction implemented using Unity XR tooling</li>
-    <li>Spray paint system coded in C# using particle collisions and decals</li>
-    <li>Environment and props modeled and refined in Blender</li>
+    <li>Single-scene VR build developed in Unity</li>
+    <li>XR interaction implemented using Unity XR tooling and Meta Quest 3s</li>
+    <li>Spray paint system built in C# using particle collision events and decal projection</li>
+    <li>Timed fade and cleanup handled through per-decal lifecycle management</li>
+    <li>Environment and props modeled and optimized in Blender</li>
   </ul>
+
+  <h2>Constraints & Decisions</h2>
+  <p>
+    The environment architecture and central table are non-interactive by design
+    to anchor spatial stability. Interaction density is concentrated in movable props
+    to avoid overwhelming the user and to preserve performance in a standalone VR context.
+    Users loved being able to throw all objects off the scene, so this was intentionally 
+    allowed.
+  </p>
 
   <h2>Exhibition</h2>
   <p>
-    Exhibited as part of <em>Art + Tech Studio</em> at Pratt Institute in 2025.
-    The project was presented as an on-site VR installation with headset interaction
-    and screen capture documentation in the Myrtle Digital Plaza.
+    Zone One was presented as the final project of <em>Art + Tech Studio I</em> at Pratt Institute in 2025.
+    The work was presented as an on-site VR installation with headset interaction, background music, and
+    external screen capture in Myrtle Digital Plaza.
   </p>
-</section>
 
 </section>
+
+
+<section>
 
 
     <div class="doc-grid">

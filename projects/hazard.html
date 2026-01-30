@@ -202,52 +202,31 @@ footer {
    <section class="details">
   <h2>Overview</h2>
   <p>
-    This project is an interactive display that changes depending on the user’s distance from the unit.
-    The hardware has a button (set to pin2) that triggers a lockdown mode when pressed.
-    It also latches, which means that lockdown will stay on until the timer is up.
-    The ultrasonic sensor is on pins 7 and 6. It reads the distance to monitor the panel’s state.
+    Hazard Panel is a proximity-driven alert system that translates distance and manual input into escalating
+    visual and audio states. The project examines the contrast between disrupting peace to see what happens and leaving it alone and experiencing nothing.
   </p>
-<br>
+
+  <h2>Interaction</h2>
   <p>
-    The LDR/Photocell was supposed to act like a fake fingerprint scanner, but I ditched that
-    in favor of having its reading be converted into a visual graph that fluctuates based on the ambient light.
+    User distance determines the system’s baseline state, progressing from calm to alert as proximity
+    increases. A physical button triggers a lockdown override that blares loudly on a buzzer and latches for a fixed duration,
+    removing user control once activated.
   </p>
-<br>
-  <p>
-    My LEDs consist of red on pin 9, alternating between solid and flashing depending on the state.
-    Yellow is on pin 10, and is the caution state.
-    Blue is on pin 11, and indicates a stable state.
-    The buzzer is on pin 5; it starts buzzing on caution, gets faster on alert,
-    and goes crazy in lockdown.
-  </p>
-<br>
-  <p>
-    I made the actual panels in after effects, exported the four files as MOV + png sequences,
-    and composited everything in Touchdesigner, which is also where I made the switches for each state
-    correspond to the bounds of the arduino.
-  </p>
-<br>
-  <h2>System Logic</h2>
-  <p>
-    I used millis timers so that everything could run at the same time.
-    The blue LED fades in and out on standby.
-    The yellow LED fades slightly faster in caution,
-    and the red LED is solid on alert and flashes rapidly on lockdown.
-    The state is determined by the ultrasonic sensor:
-  </p>
-<br>
+
+  <h2>Technical Implementation</h2>
   <ul>
-    <li>&gt; 35 cm = standby (blue)</li>
-    <li>20–35 cm = caution (yellow fade, slow buzzer)</li>
-    <li>&lt;= 20 cm = red solid, buzzer faster</li>
+    <li>Ultrasonic sensor maps proximity to discrete logic states</li>
+    <li>Non-blocking timing via <code>millis()</code> enables concurrent LED, audio, and state changes</li>
+    <li>Arduino handles input and timing; TouchDesigner manages visual logic and compositing</li>
   </ul>
-<br>
+
+  <h2>Constraints</h2>
   <p>
-    When the button is pressed, a lockdown overlay plays,
-    the red led starts flashing,
-    and the buzzer also gets much louder and faster.
-    The lockdown takes priority amongst the other states.
+    No text-based feedback is provided. Color, rhythm, and intensity are the sole communication methods,
+    prioritizing instinctive interpretation over clarity.
   </p>
+</section>
+
 <br>
       <div class="state-grid">
         <video controls>

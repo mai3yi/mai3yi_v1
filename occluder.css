@@ -201,41 +201,6 @@ footer {
   font-size: 0.75rem;
   color: var(--text-dim);
 }
-/* ===== LIGHT THEME FADE-IN (Occluder only) ===== */
-body.occluder-light {
-  background: #fafafa;
-  color: #0a0a0a;
-  animation: fadeToLight 2s ease forwards;
-}
-
-@keyframes fadeToLight {
-  0% {
-    background: #0a0a0a;
-    color: #e8e8e8;
-  }
-  100% {
-    background: #fafafa;
-    color: #0a0a0a;
-  }
-}
-
-/* Maintain readability during fade */
-body.occluder-light header,
-body.occluder-light footer {
-  transition: background 1.5s ease, color 1.5s ease;
-  color: #0a0a0a;
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-body.occluder-light .carousel.fullscreen {
-  background: #f7f7f7;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
-}
-
-body.occluder-light .gallery img {
-  background: #fff;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-}
 /* ===== GALLERY GRID WITH CAPTION ===== */
 .gallery {
   display: grid;

@@ -91,29 +91,44 @@
     </div>
   </div>
 </section>
-
- <!-- Details -->
 <section class="details">
   <h2>Overview</h2>
   <p>
-    The Occluder is a wearable mixed-media device that combines motion, electronics, and 3D printing. By
-    limiting visibility while introducing responsive motion and display elements,
-    the piece examines how users adapt to and are reflected by its sensory interference.
+    The Occluder is a wearable system that restricts the wearer’s vision while introducing
+    responsive motion and visual feedback driven by sound and body movement.
+    The device operates as a closed sensory loop, replacing visual input with kinetic
+    and signal-based output.
   </p>
 
-  <h2>Role & Tools</h2>
+  <h2>Interaction</h2>
+  <p>
+    Ambient sound is captured through a microphone and visualized as a live waveform
+    on an onboard OLED display. Body motion and tilt are read via an accelerometer,
+    driving subtle servo-based movement of wing-like extensions.
+  </p>
+  <p>
+    Movement is intentionally restrained. Rather than dramatic reaction, the system
+    maintains low-amplitude motion that persists even at rest, creating the impression
+    of an autonomous, breathing mechanism.
+  </p>
+
+  <h2>Technical Implementation</h2>
   <ul>
-    <li>End-to-end concept development, fabrication, electronics integration, and documentation</li>
-    <li>Arduino · Fusion 360 · Blender · Photoshop</li>
+    <li>MAX4466 microphone for real-time sound level analysis</li>
+    <li>MPU6050 accelerometer for motion and orientation sensing</li>
+    <li>Dual servo motors mapped to sensor input for kinetic response</li>
+    <li>SSD1306 OLED display rendering live waveform data</li>
+    <li>Arduino-based control loop coordinating concurrent inputs and outputs</li>
   </ul>
 
-  <h2>Outcome</h2>
+  <h2>Constraints</h2>
   <p>
-    Produced and exhibited as part of <em>Art + Tech Studio</em> at Pratt Institute, 2025.
-    The project was realized as a functional wearable prototype and presented through
-    in-person demonstration and visual documentation.
+    Vision is fully occluded and no explicit feedback or instructions are provided.
+    The wearer must rely on external guidance and the environment,
+    focusing on intrapersonal communication rather than a person as their own system.
   </p>
 </section>
+
 
   </main>
 
